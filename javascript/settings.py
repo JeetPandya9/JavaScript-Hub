@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-v86^0$=2(2bnwcpj&is@)01^af$n352h*lf)9=arp4i5!)b*ug')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
 # Production settings
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.herokuapp.com,.railway.app,.vercel.app', cast=lambda v: [s.strip() for s in v.split(',')])
