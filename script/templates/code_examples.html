@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="new-hero new-animate-fade">
+        <div class="new-hero-content">
+            <h1>Code Examples</h1>
+            <p>Browse through our collection of practical code examples to see JavaScript concepts in action and accelerate your learning.</p>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade">
+        <div class="container">
+            <h2 class="new-section-heading">Featured Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>DOM Manipulation</h3>
+                        <p>Examples on how to select elements, handle events, and dynamically update the page.</p>
+                        <a href="#" class="new-btn-primary mt-3">View Examples</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>Asynchronous JavaScript</h3>
+                        <p>Learn to work with Promises, Async/Await, and API calls with clear code snippets.</p>
+                        <a href="#" class="new-btn-primary mt-3">View Examples</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>ES6+ Features</h3>
+                        <p>Get up to date with modern JavaScript syntax, including arrow functions, destructuring, and classes.</p>
+                        <a href="#" class="new-btn-primary mt-3">View Examples</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade bg-light">
+        <div class="container">
+            <h2 class="new-section-heading">Recent Code Snippets</h2>
+            <div class="new-code-block-wrapper">
+                <div class="new-code-block">
+                    <h4>Higher-Order Function Example</h4>
+                    <pre><code class="language-javascript">// A higher-order function that returns a new function
+const createMultiplier = (factor) => {
+    return (number) => number * factor;
+};
+
+const double = createMultiplier(2);
+console.log(double(5)); // Output: 10
+</code></pre>
+                </div>
+                <div class="new-code-block">
+                    <h4>Fetching Data with Async/Await</h4>
+                    <pre><code class="language-javascript">const fetchData = async () => {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+};
+
+fetchData();
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

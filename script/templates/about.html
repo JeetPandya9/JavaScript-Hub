@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="new-hero new-animate-fade">
+    <div class="new-hero-content">
+        <h1>About JavaScriptHub</h1>
+        <p>Empowering developers worldwide with comprehensive JavaScript resources, modern frameworks, and practical learning experiences.</p>
+    </div>
+</section>
+
+<section class="new-section new-animate-fade">
+    <div class="container">
+        <h2 class="new-section-heading">Our Story</h2>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <p class="new-section-text">Founded in 2015, JavaScriptHub began as a small community of JavaScript enthusiasts sharing knowledge and resources. What started as a passion project has grown into a leading educational platform serving over 500,000 developers worldwide.</p>
+            </div>
+        </div>
+        
+        <div class="new-code-highlight">
+            // Our philosophy in code<br>
+            const knowledge = (experience, curiosity) => {<br>
+            &nbsp;&nbsp;return experience > 0 && curiosity === true ? "growth" : "stagnation";<br>
+            };
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <p class="new-section-text">We believe that JavaScript is more than just a programming language—it's the foundation of modern web development and a gateway to endless possibilities. Our mission is to make JavaScript accessible to everyone, from complete beginners to seasoned professionals.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="new-section new-animate-fade bg-light">
+    <div class="container">
+        <h2 class="new-section-heading">Our Mission & Values</h2>
+        <div class="row new-mission-values g-4">
+            <div class="col-md-4">
+                <div class="new-card h-100 p-4">
+                    <h3>Education First</h3>
+                    <p>We prioritize clear, practical education that bridges the gap between theory and real-world application. Our content is carefully crafted by experienced developers who understand learning curves.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="new-card h-100 p-4">
+                    <h3>Community Driven</h3>
+                    <p>JavaScriptHub thrives on community contributions. We actively maintain open-source projects and encourage collaboration among developers of all skill levels.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="new-card h-100 p-4">
+                    <h3>Stay Current</h3>
+                    <p>In the fast-evolving JavaScript ecosystem, we constantly update our content to reflect the latest standards, frameworks, and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="new-section new-animate-fade bg-dark text-white">
+    <div class="container">
+        <h2 class="new-section-heading text-primary">Meet Our Team</h2>
+        <div class="row new-team-members g-4 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "sharon_mam.jpg" %}" class="card-img-top" alt="Portrait of Sarah Johnson, JavaScriptHub founder and lead instructor, smiling professionally in a modern office setting">
+                    <div class="card-body">
+                        <h3 class="card-title">Sharon Mohtra</h3>
+                        <p class="card-text">Founder & Lead Instructor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "pavan.jpg" %}" class="card-img-top" alt="Portrait of Michael Chen, senior developer and framework expert, standing in front of a whiteboard with code diagrams">
+                    <div class="card-body">
+                        <h3 class="card-title">Pavan Mehta</h3>
+                        <p class="card-text">Senior Python Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "resume_photo.jpg" %}" class="card-img-top" alt="Portrait of Emma Rodriguez, content creator and community manager, engaging with developers at a conference">
+                    <div class="card-body">
+                        <h3 class="card-title">Jeet Pandya</h3>
+                        <p class="card-text">Python Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "aakash.jpg" %}" class="card-img-top" alt="Portrait of Emma Rodriguez, content creator and community manager, engaging with developers at a conference">
+                    <div class="card-body">
+                        <h3 class="card-title">Aakash Jagatiya</h3>
+                        <p class="card-text">UI/UX Designer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "nakul.jpeg" %}" class="card-img-top" alt="Portrait of Emma Rodriguez, content creator and community manager, engaging with developers at a conference">
+                    <div class="card-body">
+                        <h3 class="card-title">Nakul Talsaniya</h3>
+                        <p class="card-text">MERN Stack Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="new-team-member card h-100">
+                    <img src="{% static "priyank.jpg" %}" class="card-img-top" alt="Portrait of Emma Rodriguez, content creator and community manager, engaging with developers at a conference">
+                    <div class="card-body">
+                        <h3 class="card-title">Priyank Solanki</h3>
+                        <p class="card-text">Flutter Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="new-section new-animate-fade new-stats-section text-secondary" style="background: #eedb4f;">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="new-stat-item">
+                    <div class="new-stat-number" style="color: #fff;">500K+</div>
+                    <div class="new-stat-label">Developers</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="new-stat-item">
+                    <div class="new-stat-number" style="color: #fff;">1.2M</div>
+                    <div class="new-stat-label">Monthly Visits</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="new-stat-item">
+                    <div class="new-stat-number" style="color: #fff;">300+</div>
+                    <div class="new-stat-label" >Tutorials</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="new-stat-item">
+                    <div class="new-stat-number" style="color: #fff;">87</div>
+                    <div class="new-stat-label" >Countries</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

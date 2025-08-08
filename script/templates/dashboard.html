@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h2 class="mb-2">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                Welcome back, {{ user.firstname }}!
+                            </h2>
+                            <p class="mb-0">Continue your JavaScript learning journey from where you left off.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="d-flex align-items-center justify-content-md-end">
+                                <div class="me-3">
+                                    <h4 class="mb-0">{{ total_courses }}</h4>
+                                    <small>Enrolled Courses</small>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0">{{ completed_courses }}</h4>
+                                    <small>Completed</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-graduation-cap fa-2x text-primary mb-3"></i>
+                    <h4 class="card-title">{{ total_courses }}</h4>
+                    <p class="card-text">Enrolled Courses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                    <h4 class="card-title">{{ completed_courses }}</h4>
+                    <p class="card-text">Completed Courses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-clock fa-2x text-warning mb-3"></i>
+                    <h4 class="card-title">{{ total_courses|add:"-1"|add:completed_courses }}</h4>
+                    <p class="card-text">In Progress</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-star fa-2x text-info mb-3"></i>
+                    <h4 class="card-title">0</h4>
+                    <p class="card-text">Certificates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity and Enrolled Courses -->
+    <div class="row">
+        <!-- Enrolled Courses -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        My Enrolled Courses
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if enrollments %}
+                        <div class="row">
+                            {% for enrollment in enrollments %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border">
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ enrollment.course.title }}</h6>
+                                        <p class="card-text text-muted small">{{ enrollment.course.description|truncatewords:15 }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="badge bg-{{ enrollment.course.difficulty }}">
+                                                {{ enrollment.course.difficulty|title }}
+                                            </span>
+                                            <a href="{% url 'course_detail' enrollment.course.id %}" 
+                                               class="btn btn-sm btn-outline-primary">
+                                                Continue
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-graduation-cap fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No courses enrolled yet</h5>
+                            <p class="text-muted">Start your learning journey by enrolling in a course!</p>
+                            <a href="{% url 'junior_courses' %}" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>Browse Courses
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-history me-2"></i>
+                        Recent Activity
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_progress %}
+                        <div class="timeline">
+                            {% for progress in recent_progress %}
+                            <div class="timeline-item mb-3">
+                                <div class="d-flex">
+                                    <div class="timeline-marker bg-success rounded-circle me-3" style="width: 12px; height: 12px; margin-top: 5px;"></div>
+                                    <div class="timeline-content">
+                                        <h6 class="mb-1">Completed: {{ progress.lesson.title }}</h6>
+                                        <p class="text-muted small mb-0">{{ progress.completed_at|date:"M d, Y" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-clock fa-2x text-muted mb-3"></i>
+                            <p class="text-muted">No recent activity</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>
+                        Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'my_courses' %}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-graduation-cap me-2"></i>My Courses
+                        </a>
+                        <a href="{% url 'junior_courses' %}" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-plus me-2"></i>Browse New Courses
+                        </a>
+                        <a href="{% url 'video_tutorials' %}" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-video me-2"></i>Video Tutorials
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.timeline-item:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+</style>
+{% endblock %}

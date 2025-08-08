@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main>
+    <!-- Hero Section -->
+<section class="py-5" style="background-color: #0b1d36;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-white">
+                <h1 class="display-4 fw-bold">
+                    Master JavaScript with <br>
+                    <span class="text-warning">javaScriptHub</span>
+                </h1>
+                <p class="lead text-light mt-3">
+                    The best place to learn, practice and master modern JavaScript. 
+                    Join thousands of developers leveling up their skills.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="{% url "junior_courses" %}" class="btn btn-outline-light btn-lg px-4">Get Started</a>
+                    <a href="{% url "video_tutorials" %}" class="btn btn-warning btn-lg px-4 text-dark fw-semibold">View Tutorials</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+                <div class="bg-dark rounded-4 p-3 shadow-lg">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e3c17935-39fe-400a-b5f6-95db6c13d977.png"
+                         alt="JavaScript Code Example" class="img-fluid rounded-4" style="max-height: 450px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Featured Courses Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Courses</h2>
+            {% if featured_courses %}
+                <div class="row g-4 scrollable-courses">
+                    {% for course in featured_courses %}
+                        <div class="col-md-4">
+                            <div class="card h-100 course-card">
+                                {% if course.image %}
+                                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+                                {% else %}
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <i class="fas fa-book-open text-muted" style="font-size: 3rem;"></i>
+                                    </div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ course.title }}</h5>
+                                    <p class="card-text">{{ course.description|truncatewords:15 }}</p>
+                                    
+                                    <div class="row text-center mb-3">
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.duration_hours }}</h6>
+                                            <small class="text-muted">Hours</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.get_total_lessons }}</h6>
+                                            <small class="text-muted">Lessons</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.enrollments.count }}</h6>
+                                            <small class="text-muted">Students</small>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if request.session.user_id %}
+                                        <a href="{% url 'course_detail' course.id %}" class="btn btn-sm btn-primary">View Course</a>
+                                    {% else %}
+                                        <a href="{% url 'registration' %}" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-book-open text-muted mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-muted">No courses available yet</h5>
+                    <p class="text-muted">Check back soon for new courses!</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Students Say</h2>
+            <div class="row g-4 scrollable-testimonials">
+                <div class="col-md-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                ★★★★★
+                            </div>
+                            <p class="card-text">"JavaScriptHub transformed my career. The courses are well-structured and the community is incredibly supportive."</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User avatar">
+                                <div>
+                                    <h6 class="mb-0">Sarah Johnson</h6>
+                                    <small class="text-muted">Frontend Developer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                ★★★★★
+                            </div>
+                            <p class="card-text">"I went from zero to job-ready in 6 months thanks to the comprehensive curriculum and hands-on projects."</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User avatar">
+                                <div>
+                                    <h6 class="mb-0">Michael Chen</h6>
+                                    <small class="text-muted">Fullstack Developer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                ★★★★☆
+                            </div>
+                            <p class="card-text">"The quality of instruction is top-notch. I particularly appreciate the real-world examples and coding challenges."</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User avatar">
+                                <div>
+                                    <h6 class="mb-0">David Wilson</h6>
+                                    <small class="text-muted">JavaScript Developer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Latest Articles</h2>
+            <div class="row g-4 scrollable-articles">
+                <div class="col-md-4">
+                    <div class="card h-100 article-card">
+                        <img src="{% static "images.png" %}" class="card-img-top" alt="JavaScript article">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Tutorial</span>
+                            <h5 class="card-title">Understanding JavaScript Closures</h5>
+                            <p class="card-text">A deep dive into one of JavaScript's most powerful and often misunderstood features.</p>
+                            <a href="{% url "code_examples" %}" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 article-card">
+                        <img src="{% static "ES2023.jpeg" %}" class="card-img-top" alt="JavaScript article">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">News</span>
+                            <h5 class="card-title">ES2023 New Features</h5>
+                            <p class="card-text">Explore the latest additions to the JavaScript language specification.</p>
+                            <a href="{% url "code_examples" %}" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 article-card">
+                        <img src="{% static "download.jpeg" %}" class="card-img-top" alt="JavaScript article">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Tips</span>
+                            <h5 class="card-title">10 JavaScript Performance Tips</h5>
+                            <p class="card-text">Optimize your JavaScript code with these practical performance techniques.</p>
+                            <a href="{% url "code_examples" %}" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background-color: #f0da51;">
+        <div class="container text-center">
+            <h2 class="mb-4 fw-bold">Ready to Start Your JavaScript Journey?</h2>
+            <p class="lead mb-4 fw-bold">Join thousands of developers who have transformed their careers with JavaScriptHub</p>
+            <a href="{% url "registration" %}" class="btn btn-light btn-lg px-4 fw-bold">Sign Up for Free</a>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

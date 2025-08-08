@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-sign-in-alt me-2"></i>
+                        Welcome Back
+                    </h3>
+                    <p class="mb-0 mt-2">Sign in to continue your JavaScript journey</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-2"></i>Email Address
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="Enter your email" required>
+                        </div>
+                        
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock me-2"></i>Password
+                            </label>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Enter your password" required>
+                        </div>
+                        
+                        <!-- Remember Me Checkbox -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">
+                                Remember me
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Divider -->
+                    <div class="text-center my-4">
+                        <span class="bg-white px-3 text-muted">or</span>
+                        <hr class="mt-n3">
+                    </div>
+                    
+                    <!-- Social Login Buttons -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'google_auth' %}" class="btn btn-outline-dark">
+                            <i class="fab fa-google me-2"></i>Continue with Google
+                        </a>
+                        <a href="{% url 'github_auth' %}" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i>Continue with GitHub
+                        </a>
+                    </div>
+                    
+                    <!-- Links -->
+                    <div class="text-center mt-4">
+                        <p class="mb-2">
+                            Don't have an account? 
+                            <a href="{% url 'registration' %}" class="text-decoration-none">Sign up here</a>
+                        </p>
+                        <a href="#" class="text-decoration-none">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

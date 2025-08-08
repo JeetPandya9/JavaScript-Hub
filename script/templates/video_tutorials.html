@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="new-hero new-animate-fade">
+        <div class="new-hero-content">
+            <h1>Video Tutorials</h1>
+            <p>Dive into our extensive library of video tutorials covering everything from JavaScript fundamentals to advanced frameworks.</p>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade">
+        <div class="container">
+            <h2 class="new-section-heading">Featured Playlists</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>JavaScript for Beginners</h3>
+                        <p>A comprehensive series for new developers, covering core concepts like variables, functions, and loops.</p>
+                        <a href="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" class="new-btn-primary mt-3">Watch Playlist</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>React.js Fundamentals</h3>
+                        <p>Learn the basics of modern web development with a project-based approach to React.</p>
+                        <a href="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" class="new-btn-primary mt-3">Watch Playlist</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-card h-100 p-4">
+                        <h3>Node.js & Express</h3>
+                        <p>Build your first backend applications with this in-depth guide to server-side JavaScript.</p>
+                        <a href="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" class="new-btn-primary mt-3">Watch Playlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade bg-light">
+        <div class="container">
+            <h2 class="new-section-heading">Latest Videos</h2>
+            <div class="row new-video-grid g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="new-video-card">
+                        <video height="300" width="420" controls><source src="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" type="video/mp4">Your browser does not support the video tag.</video>
+                        <div class="new-video-card-body">
+                            <h4>Understanding the JavaScript Event Loop</h4>
+                            <p>A visual explanation of how JavaScript handles asynchronous code.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="new-video-card">
+                        <video height="300" width="420" controls><source src="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" type="video/mp4">Your browser does not support the video tag.</video>
+                        <div class="new-video-card-body">
+                            <h4>Building a To-Do List with React Hooks</h4>
+                            <p>A step-by-step project to learn state management and side effects.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="new-video-card">
+                        <video height="300" width="420" controls><source src="{% static "Sikandar.2025.720p.HEVC.Hindi.DS4K.WEB.DL.HC.ESub.x265.HDHub4u.Ms.mkv" %}" type="video/mp4">Your browser does not support the video tag.</video>
+
+                        <div class="new-video-card-body">
+                            <h4>An Introduction to the Node.js Ecosystem</h4>
+                            <p>Explore popular packages, modules, and best practices for Node.js.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

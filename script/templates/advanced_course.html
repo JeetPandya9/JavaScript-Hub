@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- Hero Section for the Advanced Course -->
+    <section class="project-hero">
+        <div class="container">
+            <h1 class="project-hero-title">The Complete Advanced JavaScript Developer Course</h1>
+            <p class="project-hero-subtitle">
+                Master enterprise-level architecture, performance optimization, and server-side JavaScript with Node.js.
+            </p>
+            <a href="{% url "registration" %}" class="project-btn-primary">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="project-section project-features">
+        <div class="container">
+            <h2 class="project-section-heading">What You'll Learn</h2>
+            <div class="row g-4 project-feature-cards">
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-cloud-upload"></i>
+                        </div>
+                        <h3>Server-Side JavaScript</h3>
+                        <p>Build robust backend services and REST APIs with Node.js and Express.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <h3>Performance Optimization</h3>
+                        <p>Learn techniques to write high-performance code and optimize your application's speed.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-diagram-3-fill"></i>
+                        </div>
+                        <h3>Advanced Architectures</h3>
+                        <p>Explore microservices, event-driven architecture, and state management patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Outline Section -->
+    <section class="project-section project-how-it-works bg-light">
+        <div class="container">
+            <h2 class="project-section-heading">Course Outline</h2>
+            <div class="project-step-wrapper">
+                <div class="project-step">
+                    <div class="project-step-icon">1</div>
+                    <div class="project-step-content">
+                        <h3>Node.js & Express</h3>
+                        <p>Build and secure a scalable backend API using Node.js, Express, and databases.</p>
+                    </div>
+                </div>
+                <div class="project-step">
+                    <div class="project-step-icon">2</div>
+                    <div class="project-step-content">
+                        <h3>Advanced React & State Management</h3>
+                        <p>Master advanced React hooks, Context API, and state management with Redux or Zustand.</p>
+                    </div>
+                </div>
+                <div class="project-step">
+                    <div class="project-step-icon">3</div>
+                    <div class="project-step-content">
+                        <h3>Testing & Deployment</h3>
+                        <p>Write comprehensive unit and integration tests and deploy your app to the cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="project-section project-cta text-center">
+        <div class="container">
+            <h2 class="project-section-heading">Ready for a Senior Developer Role?</h2>
+            <p>Build and deploy production-ready JavaScript applications for enterprise-level projects.</p>
+            <a href="{% url "practice_exercises" %}" class="project-btn-primary project-btn-lg mt-4">Become an Expert</a>
+        </div>
+    </section>
+</main>
+{% endblock content %}

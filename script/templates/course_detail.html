@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <!-- Course Header -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'junior_courses' %}">Courses</a></li>
+                    <li class="breadcrumb-item active">{{ course.title }}</li>
+                </ol>
+            </nav>
+            
+            <h1 class="mb-3">{{ course.title }}</h1>
+            <p class="lead text-muted">{{ course.description }}</p>
+            
+            <div class="d-flex flex-wrap gap-3 mb-3">
+                <span class="badge bg-{{ course.difficulty }} fs-6">
+                    {{ course.difficulty|title }} Level
+                </span>
+                <span class="badge bg-info fs-6">
+                    <i class="fas fa-clock me-1"></i>{{ course.duration_hours }} hours
+                </span>
+                <span class="badge bg-success fs-6">
+                    <i class="fas fa-users me-1"></i>{{ course.get_total_lessons }} lessons
+                </span>
+                {% if course.is_free %}
+                    <span class="badge bg-success fs-6">
+                        <i class="fas fa-gift me-1"></i>Free
+                    </span>
+                {% else %}
+                    <span class="badge bg-warning fs-6">
+                        <i class="fas fa-dollar-sign me-1"></i>${{ course.price }}
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" class="img-fluid rounded mb-3" alt="{{ course.title }}">
+                    {% else %}
+                        <div class="bg-light rounded d-flex align-items-center justify-content-center mb-3" style="height: 200px;">
+                            <i class="fas fa-book fa-4x text-muted"></i>
+                        </div>
+                    {% endif %}
+                    
+                    {% if is_enrolled %}
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-muted">Progress</span>
+                                <span class="fw-bold">{{ progress_percentage|floatformat:0 }}%</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%"></div>
+                            </div>
+                        </div>
+                        
+                        <a href="{% url 'lesson_detail' course.id course.modules.first.lessons.first.id %}" class="btn btn-primary btn-lg w-100 mb-2">
+                            <i class="fas fa-play me-2"></i>Continue Learning
+                        </a>
+                    {% else %}
+                        <a href="{% url 'enroll_course' course.id %}" class="btn btn-success btn-lg w-100 mb-2">
+                            <i class="fas fa-graduation-cap me-2"></i>Enroll Now
+                        </a>
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-download me-2"></i>Download Materials
+                        </button>
+                        <button class="btn btn-outline-info">
+                            <i class="fas fa-share me-2"></i>Share Course
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Content -->
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Course Modules -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-list me-2"></i>
+                        Course Content
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    {% if modules %}
+                        <div class="accordion" id="courseModules">
+                            {% for module in modules %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="module{{ module.id }}">
+                                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" 
+                                            type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse{{ module.id }}">
+                                        <div class="d-flex justify-content-between align-items-center w-100 me-3">
+                                            <div>
+                                                <strong>{{ module.title }}</strong>
+                                                <small class="text-muted d-block">{{ module.lessons.count }} lessons</small>
+                                            </div>
+                                            <span class="badge bg-primary">{{ module.lessons.count }} lessons</span>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ module.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" 
+                                     data-bs-parent="#courseModules">
+                                    <div class="accordion-body">
+                                        <p class="text-muted mb-3">{{ module.description }}</p>
+                                        <div class="list-group list-group-flush">
+                                            {% for lesson in module.lessons.all %}
+                                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fas fa-play-circle text-primary me-3"></i>
+                                                    <div>
+                                                        <h6 class="mb-1">{{ lesson.title }}</h6>
+                                                        <small class="text-muted">{{ lesson.duration_minutes }} minutes</small>
+                                                    </div>
+                                                </div>
+                                                {% if is_enrolled %}
+                                                    <a href="{% url 'lesson_detail' course.id lesson.id %}" 
+                                                       class="btn btn-sm btn-outline-primary">
+                                                        Start
+                                                    </a>
+                                                {% else %}
+                                                    <span class="badge bg-secondary">Enroll to access</span>
+                                                {% endif %}
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No modules available yet</h5>
+                            <p class="text-muted">Course content is being prepared.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Course Requirements -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clipboard-list me-2"></i>
+                        What You'll Learn
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    JavaScript fundamentals and syntax
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    DOM manipulation techniques
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Event handling and user interactions
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Modern ES6+ features
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Best practices and coding standards
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Real-world project building
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Instructor Info -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-user-tie me-2"></i>
+                        Instructor
+                    </h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                         style="width: 80px; height: 80px;">
+                        <i class="fas fa-user fa-2x text-muted"></i>
+                    </div>
+                    <h6>JavaScriptHub Team</h6>
+                    <p class="text-muted small">Expert JavaScript developers and educators</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <span class="badge bg-primary">5+ years experience</span>
+                        <span class="badge bg-success">1000+ students</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Stats -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Course Statistics
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6 mb-3">
+                            <h4 class="text-primary mb-1">{{ course.get_total_lessons }}</h4>
+                            <small class="text-muted">Total Lessons</small>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h4 class="text-success mb-1">{{ course.duration_hours }}</h4>
+                            <small class="text-muted">Hours</small>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-info mb-1">0</h4>
+                            <small class="text-muted">Students</small>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-warning mb-1">4.8</h4>
+                            <small class="text-muted">Rating</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

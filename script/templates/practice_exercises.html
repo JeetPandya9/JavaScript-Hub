@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="new-hero new-animate-fade">
+        <div class="new-hero-content">
+            <h1>Practice Exercises</h1>
+            <p>Challenge yourself with our curated list of coding exercises, designed to reinforce your skills and prepare you for technical interviews.</p>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade">
+        <div class="container">
+            <h2 class="new-section-heading">Exercises by Difficulty</h2>
+            <div class="row g-4 new-difficulty-grid">
+                <div class="col-md-4">
+                    <div class="new-difficulty-card new-difficulty-beginner">
+                        <h3>Beginner</h3>
+                        <p>Fundamental exercises to build your confidence with core JavaScript concepts.</p>
+                        <a href="{% url "junior_courses" %}" class="new-btn-secondary mt-3">Start Now</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-difficulty-card new-difficulty-intermediate">
+                        <h3>Intermediate</h3>
+                        <p>Complex problems that require a deeper understanding of functions, arrays, and objects.</p>
+                        <a href="{% url "intermediate_courses" %}" class="new-btn-secondary mt-3">Start Now</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="new-difficulty-card new-difficulty-advanced">
+                        <h3>Advanced</h3>
+                        <p>Challenging algorithmic and architectural problems to push your skills to the next level.</p>
+                        <a href="{% url "advanced_courses" %}" class="new-btn-secondary mt-3">Start Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-section new-animate-fade bg-light">
+        <div class="container">
+            <h2 class="new-section-heading">Latest Exercises</h2>
+            <div class="new-exercise-list">
+                <div class="new-exercise-item new-exercise-beginner">
+                    <h4>Reverse a String</h4>
+                    <p>Write a function that takes a string and returns a new string with the characters in reverse order.</p>
+                    <a href="#" class="new-link-secondary">Solve Challenge <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="new-exercise-item new-exercise-intermediate">
+                    <h4>Find the Longest Word</h4>
+                    <p>Given a sentence, find and return the longest word in the string.</p>
+                    <a href="#" class="new-link-secondary">Solve Challenge <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="new-exercise-item new-exercise-advanced">
+                    <h4>Implement a Custom `Promise.all`</h4>
+                    <p>Create a function that mimics the behavior of `Promise.all` using `Promises` and `async/await`.</p>
+                    <a href="#" class="new-link-secondary">Solve Challenge <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

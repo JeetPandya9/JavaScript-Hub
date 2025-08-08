@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- Hero Section for the Junior Course -->
+    <section class="junior-hero text-center py-5">
+        <div class="container">
+            <h1 class="junior-hero-title">The Complete Junior JavaScript Developer Course</h1>
+            <p class="junior-hero-subtitle">
+                A beginner-friendly path to master the fundamentals of modern JavaScript and build your first projects. No prior coding experience required.
+            </p>
+            <a href="{% url "registration" %}" class="junior-btn-primary mt-3">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="junior-section junior-what-learn py-5">
+        <div class="container">
+            <h2 class="junior-section-heading text-center mb-5">What You'll Learn</h2>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="junior-card p-4 text-center h-100 shadow rounded-3">
+                        <div class="junior-icon mb-3 fs-1 text-primary">
+                            <i class="bi bi-terminal"></i>
+                        </div>
+                        <h3 class="h5">JavaScript Fundamentals</h3>
+                        <p>Learn core concepts like variables, data types, functions, and control flow.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="junior-card p-4 text-center h-100 shadow rounded-3">
+                        <div class="junior-icon mb-3 fs-1 text-primary">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h3 class="h5">DOM Manipulation</h3>
+                        <p>Discover how to interact with HTML and CSS to create dynamic web pages.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="junior-card p-4 text-center h-100 shadow rounded-3">
+                        <div class="junior-icon mb-3 fs-1 text-primary">
+                            <i class="bi bi-window-split"></i>
+                        </div>
+                        <h3 class="h5">ES6+ Features</h3>
+                        <p>Get up to speed with modern JavaScript features like arrow functions and promises.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="junior-card p-4 text-center h-100 shadow rounded-3">
+                        <div class="junior-icon mb-3 fs-1 text-primary">
+                            <i class="bi bi-boxes"></i>
+                        </div>
+                        <h3 class="h5">Project-Based Learning</h3>
+                        <p>Build multiple real-world projects to solidify your knowledge and build a portfolio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Outline Section -->
+    <section class="junior-section junior-outline bg-light py-5">
+        <div class="container">
+            <h2 class="junior-section-heading text-center mb-5">Course Outline</h2>
+            <div class="row gy-4">
+                <div class="col-12 col-md-6">
+                    <div class="junior-module">
+                        <h3 class="junior-module-title">Module 1: The Foundations of JavaScript</h3>
+                        <ul>
+                            <li>Introduction to Programming</li>
+                            <li>Variables, Data Types, and Operators</li>
+                            <li>Conditional Statements and Loops</li>
+                            <li>Functions and Scope</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="junior-module">
+                        <h3 class="junior-module-title">Module 2: Interacting with the Web</h3>
+                        <ul>
+                            <li>Introduction to the DOM</li>
+                            <li>Selecting and Manipulating Elements</li>
+                            <li>Event Handling</li>
+                            <li>Building a Simple To-Do List App</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="junior-module">
+                        <h3 class="junior-module-title">Module 3: Modern JavaScript (ES6+)</h3>
+                        <ul>
+                            <li>Arrow Functions and Template Literals</li>
+                            <li>Destructuring and Spread/Rest Operators</li>
+                            <li>Working with Arrays and Objects</li>
+                            <li>Asynchronous JavaScript (Promises, Async/Await)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="junior-module">
+                        <h3 class="junior-module-title">Module 4: Putting It All Together</h3>
+                        <ul>
+                            <li>Introduction to APIs</li>
+                            <li>Building a Weather App</li>
+                            <li>Final Portfolio Project</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Courses Section -->
+    <section class="junior-section junior-courses bg-light py-5">
+        <div class="container">
+            <h2 class="junior-section-heading text-center mb-5">Available Junior Courses</h2>
+            {% if courses %}
+                <div class="row g-4">
+                    {% for course in courses %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 course-card shadow-sm">
+                                {% if course.image %}
+                                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+                                {% else %}
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <i class="fas fa-book-open text-muted" style="font-size: 3rem;"></i>
+                                    </div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ course.title }}</h5>
+                                    <p class="card-text text-muted">{{ course.description|truncatewords:20 }}</p>
+                                    
+                                    <div class="row text-center mb-3">
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.duration_hours }}</h6>
+                                            <small class="text-muted">Hours</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.get_total_lessons }}</h6>
+                                            <small class="text-muted">Lessons</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <h6 class="mb-0 text-primary">{{ course.enrollments.count }}</h6>
+                                            <small class="text-muted">Students</small>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if request.session.user_id %}
+                                        <a href="{% url 'course_detail' course.id %}" class="btn btn-primary w-100">
+                                            <i class="fas fa-graduation-cap me-2"></i>View Course
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'registration' %}" class="btn btn-primary w-100">
+                                            <i class="fas fa-user-plus me-2"></i>Sign Up to Enroll
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-book-open text-muted mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="text-muted">No junior courses available yet</h5>
+                    <p class="text-muted">Check back soon for new courses!</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="junior-section junior-cta text-center py-5">
+        <div class="container">
+            <h2 class="junior-section-heading mb-3">Ready to Start Your Coding Journey?</h2>
+            <p>Join over 500,000 developers who have launched their careers with JavaScriptHub.</p>
+            {% if request.session.user_id %}
+                <a href="{% url 'dashboard' %}" class="junior-btn-primary junior-btn-lg mt-4">Go to Dashboard</a>
+            {% else %}
+                <a href="{% url 'registration' %}" class="junior-btn-primary junior-btn-lg mt-4">Start Learning Today</a>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock content %}

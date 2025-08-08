@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- Hero Section for the Intermediate Course -->
+    <section class="project-hero">
+        <div class="container">
+            <h1 class="project-hero-title">The Complete Intermediate JavaScript Developer Course</h1>
+            <p class="project-hero-subtitle">
+                Level up your skills with advanced JavaScript concepts, modern frameworks, and asynchronous programming.
+            </p>
+            <a href="{% url "registration" %}" class="project-btn-primary">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="project-section project-features">
+        <div class="container">
+            <h2 class="project-section-heading">What You'll Learn</h2>
+            <div class="row g-4 project-feature-cards">
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-gear-wide-connected"></i>
+                        </div>
+                        <h3>Advanced Functions</h3>
+                        <p>Dive deep into closures, higher-order functions, and functional programming patterns.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-stack"></i>
+                        </div>
+                        <h3>Frameworks & Libraries</h3>
+                        <p>Get an introduction to modern frameworks like React, Vue, or Angular to build dynamic UIs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="bi bi-infinity"></i>
+                        </div>
+                        <h3>Asynchronous JavaScript</h3>
+                        <p>Master Promises, Async/Await, and the Event Loop to handle complex operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Outline Section -->
+    <section class="project-section project-how-it-works bg-light">
+        <div class="container">
+            <h2 class="project-section-heading">Course Outline</h2>
+            <div class="project-step-wrapper">
+                <div class="project-step">
+                    <div class="project-step-icon">1</div>
+                    <div class="project-step-content">
+                        <h3>Advanced JS Concepts</h3>
+                        <p>Explore object-oriented programming, prototypes, and advanced data structures.</p>
+                    </div>
+                </div>
+                <div class="project-step">
+                    <div class="project-step-icon">2</div>
+                    <div class="project-step-content">
+                        <h3>API Integration</h3>
+                        <p>Learn to fetch data from REST APIs and integrate it into your projects.</p>
+                    </div>
+                </div>
+                <div class="project-step">
+                    <div class="project-step-icon">3</div>
+                    <div class="project-step-content">
+                        <h3>Building a Full Project</h3>
+                        <p>Apply your knowledge to build a full-featured web application from scratch.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="project-section project-cta text-center">
+        <div class="container">
+            <h2 class="project-section-heading">Ready to Build Complex Applications?</h2>
+            <p>Elevate your skills and become a full-stack developer with our intermediate courses.</p>
+            <a href="{% url "code_examples" %}" class="project-btn-primary project-btn-lg mt-4">Start Learning Today</a>
+        </div>
+    </section>
+</main>
+{% endblock content %}
