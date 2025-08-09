@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-v86^0$=2(2bnwcpj&is@)
 DEBUG = False
 
 # Production settings
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='javascript-hub-6.onrender.com', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='javascript-hub-7.onrender.com', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
 
@@ -179,4 +179,4 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://javascript-hub-6.onrender.com', cast=lambda v: [s.strip() for s in v.split(',')])
+    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://javascript-hub-7.onrender.com', cast=lambda v: [s.strip() for s in v.split(',')])
