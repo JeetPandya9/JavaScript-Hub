@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'javascript.wsgi.application'
 # Google OAuth2 Settings
 GOOGLE_OAUTH2_CLIENT_ID = config('GOOGLE_OAUTH2_CLIENT_ID', default='')
 GOOGLE_OAUTH2_CLIENT_SECRET = config('GOOGLE_OAUTH2_CLIENT_SECRET', default='')
-GOOGLE_OAUTH2_REDIRECT_URI = config('GOOGLE_OAUTH2_REDIRECT_URI', default='https://your-domain.com/auth/google/callback/')
+GOOGLE_OAUTH2_REDIRECT_URI = config('GOOGLE_OAUTH2_REDIRECT_URI', default='https://*.onrender.com/auth/google/callback/')
 
 # GitHub OAuth2 Settings
 GITHUB_OAUTH2_CLIENT_ID = config('GITHUB_OAUTH2_CLIENT_ID', default='')
 GITHUB_OAUTH2_CLIENT_SECRET = config('GITHUB_OAUTH2_CLIENT_SECRET', default='')
-GITHUB_OAUTH2_REDIRECT_URI = config('GITHUB_OAUTH2_REDIRECT_URI', default='https://your-domain.com/auth/github/callback/')
+GITHUB_OAUTH2_REDIRECT_URI = config('GITHUB_OAUTH2_REDIRECT_URI', default='https://*.onrender.com/auth/github/callback/')
 
 # OAuth2 URLs
 GOOGLE_OAUTH2_AUTH_URL = 'https://accounts.google.com/o/oauth2/auth'
@@ -179,4 +179,4 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://your-domain.com', cast=lambda v: [s.strip() for s in v.split(',')])
+    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://*.onrender.com', cast=lambda v: [s.strip() for s in v.split(',')])
